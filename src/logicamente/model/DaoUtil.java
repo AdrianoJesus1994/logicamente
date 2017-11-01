@@ -12,10 +12,10 @@ public class DaoUtil {
     private Connection con = null;
     
     public Connection starConnection(){
-        String user = "gatolino_logica";
-        String pws = "logicamente";
+        String user = "naass849_logica";
+        String pws = "logicamentegame";
         String driver = "com.mysql.jdbc.Driver";
-        String url = "jdbc:mysql://gatolino.heliohost.org:3306/gatolino_logicamentedb?zeroDateTimeBehavior=convertToNull";
+        String url = "jdbc:mysql://br628.hostgator.com.br:3306/naass849_logicamente?zeroDateTimeBehavior=convertToNull";
         
         try {
             if (this.con == null) {

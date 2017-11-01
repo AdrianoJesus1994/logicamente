@@ -8,12 +8,12 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Logicamamente.jar" size="11191" download="eager" />
+    <jar href="Logicamamente.jar" size="1044560" download="eager" />
     <jar href="lib\mysql-connector-java-5.1.23-bin.jar" size="834126" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="Logicamamente" >
     <param name="requiredFXVersion" value="8.0+"/>
   </applet-desc>
-  <jfx:javafx-desc  width="800" height="600" main-class="logicamamente.Logicamamente"  name="Logicamamente" />
+  <jfx:javafx-desc  width="800" height="600" main-class="logicamente.Logicamente"  name="Logicamamente" />
   <update check="always"/>
 </jnlp>
