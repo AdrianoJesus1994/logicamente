@@ -15,7 +15,7 @@ import javafx.stage.Stage;
  *
  * @author Adriano
  */
-public class Logicamamente extends Application {
+public class Logicamente extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
