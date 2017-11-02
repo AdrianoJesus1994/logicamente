@@ -7,20 +7,18 @@ package logicamente.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import logicamente.dto.UsuarioDto;
 import logicamente.model.dao.UsuarioDao;
 
@@ -49,54 +47,45 @@ public class LoginController implements Initializable {
     private AnchorPane anchorpaneLogin;
     
     @FXML
-    void realizarLogin(ActionEvent event) {
-       List <UsuarioDto> usuarios  = new UsuarioDao().listarUsuarios();
-       
-        try {
+    void realizarLogin(ActionEvent event) throws SQLException {
+      
+       if(inputLogin.getText().isEmpty() || inputSenha.getText().isEmpty()){
+           labelStatus.setText("Preencha os campos acima.");
+       }else{
+           
+            UsuarioDto login = new UsuarioDto();
+            login.setEmail(inputLogin.getText());
+            login.setSenha(inputSenha.getText());
 
-            for (int i = 0; i<usuarios.size(); i++) {
-                if( inputLogin.getText().equals(usuarios.get(i).getEmail()) && inputSenha.getText().equals(usuarios.get(i).getSenha()) ){
-                //if (inputLogin.getText().equals(usuario.getEmail()) && inputSenha.getText().equals(usuario.getSenha()) ) {
-                    try {
-                                              
-                        Parent root = FXMLLoader.load(getClass().getResource("/logicamente/view/VboxMain.fxml"));
-                        Stage stage = new Stage();
-                        Scene scene = new Scene(root);
-                        stage.setScene(scene);
-                        stage.show();
-                        break;
-                        
-                    } catch (IOException e) {
-                        System.out.println("Erro: " + e);
-                    }
-                }else{
-                    labelStatus.setText("Erro Na Autenticação");
-                    inputLogin.setText("");
-                    inputSenha.setText("");
-                }
-            }
-            
-        } catch (Exception e) {
-          labelStatus.setText("Ocorreu um Erro: " + e);
-        }      
+            UsuarioDao valida = new UsuarioDao();
+            UsuarioDto result = valida.validaUsuario(login);
+
+                     if(result != null ){
+                         AplicationUtil.getInstancia().irParaTela("VboxMain.fxml");
+//                             AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/logicamente/view/VboxMain.fxml"));
+//                             anchorpaneLogin.getChildren().setAll(a);
+                     }else{
+                         inputLogin.setText("");
+                         inputSenha.setText("");
+                         labelStatus.setText("Erro Na Autenticação");
+                     }   
+        }
     }
 
     @FXML
-    void realizarCadastro(ActionEvent event) {
-        try {
+    void realizarCadastro(ActionEvent event){
             
-            AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/logicamente/view/CadastroUsuario.fxml"));
-            anchorpaneLogin.getChildren().setAll(a);
-            
-//            Parent root = FXMLLoader.load(getClass().getResource("/logicamente/view/CadastroUsuario.fxml"));
-//            Stage stage = new Stage();
-//            Scene scene = new Scene(root);
-//            stage.setScene(scene);
-//            stage.show();
-
-        } catch (IOException e) {
-            System.out.println("Erro: " + e);
-        }  
+        AplicationUtil.getInstancia().irParaTela("CadastroUsuario.fxml");
+//
+//        AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/logicamente/view/CadastroUsuario.fxml"));
+//        anchorpaneLogin.getChildren().setAll(a);
+//
+//        Parent root = FXMLLoader.load(getClass().getResource("/logicamente/view/CadastroUsuario.fxml"));
+//        Stage stage = new Stage();
+//        Scene scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show();
+ 
     
     }
     
