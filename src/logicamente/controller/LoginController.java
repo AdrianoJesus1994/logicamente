@@ -5,14 +5,11 @@
  */
 package logicamente.controller;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -61,13 +58,14 @@ public class LoginController implements Initializable {
             UsuarioDto result = valida.validaUsuario(login);
 
                      if(result != null ){
-                         AplicationUtil.getInstancia().irParaTela("VboxMain.fxml");
+                         AplicationUtil.getInstancia().setUsuarioLogado(result);
+                         AplicationUtil.getInstancia().irParaTela("TelaPrincipal.fxml");
 //                             AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/logicamente/view/VboxMain.fxml"));
 //                             anchorpaneLogin.getChildren().setAll(a);
                      }else{
                          inputLogin.setText("");
                          inputSenha.setText("");
-                         labelStatus.setText("Erro Na Autenticação");
+                         labelStatus.setText("Ocorreram erros ao validar as informações digitadas, por favor verifique-as  e tente novamente");
                      }   
         }
     }

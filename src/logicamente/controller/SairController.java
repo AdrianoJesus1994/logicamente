@@ -7,33 +7,27 @@ package logicamente.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.Button;
 
 /**
  * FXML Controller class
  *
- * @author Adriano
+ * @author Adriano.jesus
  */
-public class VboxMainController implements Initializable {
+public class SairController implements Initializable {
 
     @FXML
-    private MenuItem menuItemInicio;
+    private Button btnConfirmaSaida;
+
     @FXML
-    private MenuItem menuItemListarJogadores;
-    @FXML
-    private MenuItem menuItemRelatorioGeral;
-    @FXML
-    private MenuItem menuItemRelatorioPessoa;
-    @FXML
-    private MenuItem menuItemGraficoGeral;
-    @FXML
-    private MenuItem menuItemAjudaSobre;
-    @FXML
-    private MenuItem painelPrincipal;
-    
-    
+    void confirmaSaida(ActionEvent event) {
+        AplicationUtil.getInstancia().setUsuarioVazio();
+        AplicationUtil.getInstancia().irParaTela("Login.fxml");
+
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

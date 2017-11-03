@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="440.0" prefWidth="718.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logicamente.controller.VisaoGeralController">
+    <stylesheets>
+        <URL value="@visaogeral.css" />
+    </stylesheets>
+   <children>
+      <BarChart fx:id="graficoBarra" layoutX="32.0" layoutY="77.0" prefHeight="252.0" prefWidth="269.0" title="Jogadores por Sexo">
+        <xAxis>
+          <CategoryAxis fx:id="graficoBarraCategorias" side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="graficoBarraValor" side="LEFT" />
+        </yAxis>
+      </BarChart>
+   </children>
+</AnchorPane>
